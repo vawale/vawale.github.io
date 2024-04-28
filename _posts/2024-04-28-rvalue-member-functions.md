@@ -1,3 +1,10 @@
+---
+layout: post
+title: "forwarding function objects"
+date: 2024-04-28 00:00:00 -0000
+categories: C++
+---
+
 # Forwarding function objects
 
 ## clang-tidy check cppcoreguidelines-missing-std-forward
@@ -82,11 +89,13 @@ fn_object.value << "Store some data in stream";
 auto value = wrapper(std::move(fn_object));
 ```
 
-If we don't use `std::forward` on `function` input argument of `wrapper` function, we end up
-using lvalue overload of our function_object `()` operator, even if we expected to use rvalue
-function object overload! Example - https://godbolt.org/z/8Pf98xz6W.
+If we don't use `std::forward` on `function` input argument of `wrapper` function, we end up using
+lvalue overload of our function_object `()` operator, even if we expected to use rvalue function
+object overload! Example - [godbolt](https://godbolt.org/z/8Pf98xz6W).
 
-Following clang-tidy check suggestion, we get the expected result - https://godbolt.org/z/ase5v8EoK. This is because we pass *rvalueness* of function object correctly from the wrapper function.
+Following clang-tidy check suggestion, we get the expected result -
+[godbolt](https://godbolt.org/z/ase5v8EoK). This is because we pass *rvalueness* of function object
+correctly from the wrapper function.
 
 ## Conclusion
 
