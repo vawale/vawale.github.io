@@ -1,3 +1,3 @@
 # Software engineering musings
 
-Source code for my personal coding blog.
+This area will contain some of my learnings and coding experiments.

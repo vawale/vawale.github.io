@@ -12,15 +12,3 @@ enableRobotsTXT: true
 theme: jekyll-theme-minimal
 title : Vaibhav's software engineering musings
 tagline: software engineering musings
-
-params:
-  description: "This area will contain some of my learnings and coding experiments."
-  author: Vaibhav Awale
-  mainSections:
-    - posts
-
-menu:
-  main:
-    - name: Posts
-      url: /_posts/
-      weight: 1

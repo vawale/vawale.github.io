@@ -1,13 +1,12 @@
 ---
 layout: post
-title: "forwarding function objects"
+title: "Forwarding function objects"
+author: Vaibhav Awale
 date: 2024-04-28 00:00:00 -0000
 categories: C++
 ---
 
-# Forwarding function objects
-
-## clang-tidy check cppcoreguidelines-missing-std-forward
+## clang-tidy check - cppcoreguidelines-missing-std-forward
 
 Recently I worked on updating our llvm toolchain to version 17. This brought in some nice new static
 analysis checks from clang-tidy-17. One interesting check introduced is
@@ -26,7 +25,8 @@ ReturnType wrapper(Function&& function)
 }
 ```
 
-clang-tidy check asks to use `std::forward` for `function` argument - https://godbolt.org/z/6c8qna58q
+clang-tidy check asks to use `std::forward` for `function` argument -
+[godbolt](https://godbolt.org/z/6c8qna58q).
 ```sh
 error: forwarding reference parameter 'function' is never forwarded inside the function body [cppcoreguidelines-missing-std-forward,-warnings-as-errors]
     6 | ReturnType wrapper(Function&& function)
