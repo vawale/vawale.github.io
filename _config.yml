@@ -1,3 +1,42 @@
 theme: jekyll-theme-minimal
 title: Vaibhav Awale's homepage
-description: Few technical articles and coding experiments
+description: This area will contain some of my learnings and coding experiments.
+
+enableRobotsTXT: true
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
+# Path: _config.yml
+collections:
+  posts:
+    output: true
+    permalink: /posts/:title
+
+# Path: _config.yml
+paginate: 5
+
+# Path: _config.yml
+jekyll-feed:
+  posts:
+    path: "/feed.xml"
+
+# Path: _config.yml
+jekyll-seo-tag:
+  title: Vaibhav Awale's homepage
+  description: This area will contain some of my learnings and coding experiments.
+  url: "https://vaibhavawale.github.io"
+
+menu:
+  main:
+    - name: Posts
+      url: /posts/
+      weight: 1
