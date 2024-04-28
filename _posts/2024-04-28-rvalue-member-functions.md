@@ -1,8 +1,3 @@
-layout: post
-title: "Forwarding function objects"
-date: 2024-04-28 00:00:00 -0000
-categories: C++
-
 # Forwarding function objects
 
 ## clang-tidy check cppcoreguidelines-missing-std-forward

@@ -1,42 +1,19 @@
-theme: jekyll-theme-minimal
-title: Vaibhav Awale's homepage
-description: This area will contain some of my learnings and coding experiments.
+# This is the default format. 
+# For more see: https://github.com/mojombo/jekyll/wiki/Permalinks
+permalink: /:categories/:year/:month/:day/:title 
 
+exclude: ["README.md"]
+auto: true
 enableRobotsTXT: true
 
-plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
-  - jekyll-sitemap
-
-defaults:
-  - scope:
-      path: ""
-    values:
-      layout: "default"
-
-# Path: _config.yml
-collections:
-  posts:
-    output: true
-    permalink: /posts/:title
-
-# Path: _config.yml
-paginate: 5
-
-# Path: _config.yml
-jekyll-feed:
-  posts:
-    path: "/feed.xml"
-
-# Path: _config.yml
-jekyll-seo-tag:
-  title: Vaibhav Awale's homepage
-  description: This area will contain some of my learnings and coding experiments.
-  url: "https://vaibhavawale.github.io"
-
-menu:
-  main:
-    - name: Posts
-      url: /posts/
-      weight: 1
+# Themes are encouraged to use these universal variables 
+# so be sure to set them if your theme uses them.
+#
+theme: jekyll-theme-minimal
+title : Vaibhav's software engineering musings
+description: This area will contain some of my learnings and coding experiments.
+tagline: software engineering musings
+author :
+  name : Vaibhav Awale
+  email : vaibhavawale3@gmail.com
+  github : vawale
