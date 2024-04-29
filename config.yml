@@ -1,0 +1,82 @@
+title: Vaibhav's software engineering musings
+baseURL: "https://vawale.github.io/software-engineering-musings/"
+theme: PaperModX
+
+enableRobotsTXT: true
+enableEmoji: true
+
+params:
+  description: "This space will contain some of my learnings and coding experiments."
+  author: Vaibhav Awale
+  DateFormat: "2006-01-02"
+  useCustomAnalytics: true
+  mainSections:
+    - posts
+
+  # theme params
+  DisableLanguageSwitch: true
+  TocOpen: true
+  TocSide: right
+  EnableInstantClick: false
+  EnableImageZoom: true
+  ShowShareButtons: true
+  ShareButtons:
+    - twitter
+    - telegram
+  ShowReadingTime: true
+  ShowWordCount: true
+  ShowCodeCopyButtons: true
+  ShowPostNavLinks: true
+  Email: vaibhavawale3@gmail.com
+
+  socialIcons:
+    - name: vawale
+      url: "https://github.com/vawale"
+    - name: gmail
+      url: vaibhavawale3@gmail.com
+
+  homeInfoParams:
+    Title: "Software Engineering Musings"
+    Content: |
+      This space will contain some of my learnings and coding experiments.
+
+  #commentSystems:
+  #  disqus:
+  #    shortname: reorx
+  #  remark42:
+  #    url: https://remark42.reorx.com
+  #    site: reorx.github.io
+  #  telegramWidget:
+  #    channel: reorx_share
+  #    accentColor: "9077e1"
+  #    limit: 20
+  #defaultCommentSystems:
+  #  remark42: true
+
+permalinks:
+  notes: /:section/:year/:month/:slugorfilename
+
+# prefer feed.xml rather than index.xml
+outputFormats:
+  RSS:
+    mediatype: "application/rss"
+    baseName: "feed"
+
+menu:
+  main:
+    - name: Posts
+      url: /posts/
+      weight: 1
+
+languages:
+  en:
+    languageName: "English"
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    style: dracula
+    lineNos: false
+    noClasses: false

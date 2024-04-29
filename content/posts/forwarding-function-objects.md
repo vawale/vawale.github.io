@@ -1,9 +1,12 @@
 ---
-layout: post
 title: "Forwarding function objects"
 author: Vaibhav Awale
-date: 2024-04-28 00:00:00 -0000
-categories: C++
+date: "2024-04-28"
+description: "Exploring rvalue function call overload"
+tags:
+    - c++
+    - function objects
+    - functional programming
 ---
 
 ## clang-tidy check - cppcoreguidelines-missing-std-forward
