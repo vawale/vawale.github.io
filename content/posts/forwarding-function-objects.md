@@ -9,13 +9,19 @@ tags:
     - functional programming
 ---
 
+## Recommended reading
+
+To understand `std::forward`<sup>1</sup> and [when to use
+them](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f15-prefer-simple-and-conventional-ways-of-passing-information)<sup>2</sup>
+see references.
+
 ## clang-tidy check - cppcoreguidelines-missing-std-forward
 
 Recently I worked on updating our llvm toolchain to version 17. This brought in some nice new static
 analysis checks from clang-tidy-17. One interesting check introduced is
 [cppcoreguidelines-missing-std-forward](https://clang.llvm.org/extra/clang-tidy/checks/cppcoreguidelines/missing-std-forward.html),
-that enforces C++ core guideline
-[F.19](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rf-forward).
+that enforces [C++ core guideline
+F.19](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#Rf-forward).
 
 The guideline is pretty clear to understand for non-function types in template arguments. However, does
 it serve any purpose when template argument refers to a function/callable type? Consider the following example:
@@ -28,7 +34,7 @@ ReturnType wrapper(Function&& function)
 }
 ```
 
-clang-tidy check asks to use `std::forward` for `function` argument -
+clang-tidy check asks to use `std::forward`<sup>1</sup> for `function` argument -
 [godbolt](https://godbolt.org/z/6c8qna58q).
 
 ```sh
@@ -58,9 +64,12 @@ See section [Member functions with ref
 qualifier](https://en.cppreference.com/w/cpp/language/member_functions). Providing rvalue overload
 of few member functions of your class can be helpful for performance optimization, because rvalue
 overload can assume that class data is not going to be used after they are called. For example,
-`std::stringstream::str` method has a rvalue overload, see
-[(3)](https://en.cppreference.com/w/cpp/io/basic_stringstream/str). This overload returns a string
-move-constructed from the underlying string, thus avoiding a potential memory allocation and copy.
+`std::stringstream::str` method has a [rvalue
+overload](https://en.cppreference.com/w/cpp/io/basic_stringstream/str), see the third overload. This
+overload returns a string move-constructed from the underlying buffer, thus avoiding a potential
+memory allocation and copy. Another example is
+[std::optional::operator*](https://en.cppreference.com/w/cpp/utility/optional/operator*) that
+returns rvalue reference to contained value inside optional, if we use rvalue overload.
 
 Consider following example function object that uses `std::stringstream::str` in a function object:
 
@@ -107,5 +116,14 @@ correctly from the wrapper function.
 
 ## Conclusion
 
-Always use `std::forward` if object is taken using universal reference. Also, use static analysis
-tools like clang-tidy which catch such issues and help improve code quality.
+Using `std::forward` for function objects does make the function call operator read a little
+different. So, pass function objects as forwarding references only if it makes sense and there are
+profiling results to prove performance benefits. That being said, if you decide to pass function
+objects as forwarding references, always use `std::forward` on function object to ensure you get the
+right overload. Also, use static analysis tools like clang-tidy which catch such issues and help
+improve code quality.
+
+## References
+
+1. [std::forward](https://en.cppreference.com/w/cpp/utility/forward)
+2. [C++ core guideline F.15](http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines#f15-prefer-simple-and-conventional-ways-of-passing-information)
