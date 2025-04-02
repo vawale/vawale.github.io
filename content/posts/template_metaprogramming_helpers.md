@@ -62,7 +62,7 @@ count_if<is_signed_type, int, unsigned int, double>();
 ```cpp
 template<template <typename T> typename Predicate, typename... Args>
 consteval auto all_of() -> bool {
-    return (Predicate<Args>() && ...);
+    return (Predicate<Args>{}() && ...);
 }
 ```
 Folds over the binary and (`&&`) operator.
@@ -72,7 +72,7 @@ Folds over the binary and (`&&`) operator.
 ```cpp
 template<template <typename T> typename Predicate, typename... Args>
 consteval auto any_of() -> bool {
-    return (Predicate<Args>() || ...);
+    return (Predicate<Args>{}() || ...);
 }
 ```
 Folds over binary or (`||`) operator.
@@ -91,7 +91,7 @@ consteval auto none_of() -> bool {
 ```cpp
 template<template <typename T> typename Func, typename... Args>
 consteval void for_each() {
-    (Func<Args>(), ...);
+    (Func<Args>{}(), ...);
 }
 ```
 The `Func` passed above needs to be a template type that defines a compile time (`consteval`)
@@ -113,7 +113,7 @@ struct assert_arithmetic {
 ```cpp
 template<template <typename T> typename Func, typename... Args>
 consteval void for_each_tuple_type(std::tuple<Args...>) {
-    (Func<Args>(), ...);
+    (Func<Args>{}(), ...);
 }
 ```
 
